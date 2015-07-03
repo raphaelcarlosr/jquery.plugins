@@ -1,0 +1,23 @@
+{
+  "name": "jquery.plugins",
+  "main": "jquery.plugins.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/raphaelcarlosr/jquery.plugins",
+  "authors": [
+    "Raphael Carlos Rego <raphaelcarlosr@gmail.com>"
+  ],
+  "description": "jQuery plugins, auto load plugin and prepare it to use",
+  "keywords": [
+    "jquery",
+    "plugins",
+    "autoload"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
