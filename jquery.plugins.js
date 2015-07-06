@@ -1,4 +1,7 @@
 
+/**
+* jQuery Plugins
+*/
 ;(function($, yepnope){
     //'use strict';
     //plugins stack 
@@ -22,9 +25,11 @@
         }
         //register on jquery 
         $.fn[name] = function(){
+            //var args = Array.prototype.slice.call(arguments);
+            var args = arguments;
             //if is loading
             if (plugins[name].loading === true) {
-                plugins[name].callQueue.push([this, arguments]);
+                plugins[name].callQueue.push([this, args]);
                 return void (0);
             } 
             //mark as loading
@@ -35,14 +40,14 @@
                 load: files,
                 complete: function(){
                     //callback
-                    try{ loadCallback(); }catch(ex){ throw new Error('jQuery Plugin load callback error. ' + ex.toString()); } 
+                    try{ loadCallback.call(that, args); }catch(ex){ throw new Error('jQuery Plugin load callback error. ' + ex.toString()); } 
                     //call plugin
-                    $(that)[name].apply(that, Array.prototype.slice.call(arguments));
+                    $(that)[name].apply(that, args);                                        
                     //call all times
                     if (plugins[name].callQueue) {
                         for (var i = 0, l = plugins[name].callQueue.length; i < l; i++) {
                             //$(plugins[name].callQueue[i][0])[name](plugins[name].callQueue[i][1], plugins[name].callQueue[i][2]);
-                            $(plugins[name].callQueue[i][0])[name].apply(plugins[name].callQueue[i][0], Array.prototype.slice.call(plugins[name].callQueue[i][1]));
+                            $(plugins[name].callQueue[i][0])[name].apply(plugins[name].callQueue[i][0], plugins[name].callQueue[i][1]);
                         }
                     }
                     delete plugins[name];
