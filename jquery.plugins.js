@@ -56,9 +56,8 @@
                     console.error('Load plugin error', arguments);
                 }
             });
-            
-        };       
-        
+            return this;
+        };  
         return this;
     };
 })(window.jQuery, window.yepnope);
